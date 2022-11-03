@@ -28,22 +28,22 @@ type PostgresConfig struct {
 
 // Update creates a new `PostgresConfig` type
 func Update(p *PostgresConfig) error {
-	if p.PGHost != "" {
+	if p.PGHost == "" {
 		p.PGHost = os.Getenv("PGHOST")
 	}
-	if p.PGPort != "" {
+	if p.PGPort == "" {
 		p.PGPort = os.Getenv("PGPORT")
 	}
-	if p.PGDatabase != "" {
+	if p.PGDatabase == "" {
 		p.PGDatabase = os.Getenv("PGDATABASE")
 	}
-	if p.PGUser != "" {
+	if p.PGUser == "" {
 		p.PGUser = os.Getenv("PGUSER")
 	}
-	if p.PGPassword != "" {
+	if p.PGPassword == "" {
 		p.PGPassword = os.Getenv("PGPASSWORD")
 	}
-	if p.PGSSLMode != "" {
+	if p.PGSSLMode == "" {
 		p.PGSSLMode = os.Getenv("PGSSLMODE")
 	}
 	return nil
@@ -69,8 +69,6 @@ func (c *PostgresConfig) GetPostgresConnStr() string {
 		connStr += fmt.Sprintf(" dbname=%s", "postgres")
 	}
 	if c.PGPassword != "" {
-		connStr += fmt.Sprintf(" password=%s", c.PGPassword)
-	} else {
 		connStr += fmt.Sprintf(" password=%s", c.PGPassword)
 	}
 	if c.PGPort != "" {
