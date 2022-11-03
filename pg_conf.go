@@ -26,25 +26,31 @@ type PostgresConfig struct {
 	PGSSLMode string
 }
 
-// Update creates a new `PostgresConfig` type
+// Update creates a new `PostgresConfig` type. The environment variables will override defaults set
 func Update(p *PostgresConfig) error {
-	if p.PGHost == "" {
-		p.PGHost = os.Getenv("PGHOST")
+	pgHost := os.Getenv("PGHOST")
+	if pgHost != "" {
+		p.PGHost = pgHost
 	}
-	if p.PGPort == "" {
+	pgPort := os.Getenv("PGPORT")
+	if pgPort != "" {
 		p.PGPort = os.Getenv("PGPORT")
 	}
-	if p.PGDatabase == "" {
-		p.PGDatabase = os.Getenv("PGDATABASE")
+	pgDatabase := os.Getenv("PGDATABASE")
+	if pgDatabase != "" {
+		p.PGDatabase = pgDatabase
 	}
-	if p.PGUser == "" {
-		p.PGUser = os.Getenv("PGUSER")
+	pgUser := os.Getenv("PGUSER")
+	if pgUser != "" {
+		p.PGUser = pgUser
 	}
-	if p.PGPassword == "" {
-		p.PGPassword = os.Getenv("PGPASSWORD")
+	pgPassword := os.Getenv("PGPASSWORD")
+	if pgPassword != "" {
+		p.PGPassword = pgPassword
 	}
-	if p.PGSSLMode == "" {
-		p.PGSSLMode = os.Getenv("PGSSLMODE")
+	pgSSLMode := os.Getenv("PGSSLMODE")
+	if pgSSLMode != "" {
+		p.PGSSLMode = pgSSLMode
 	}
 	return nil
 }

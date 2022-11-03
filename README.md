@@ -1,6 +1,7 @@
 # PG Conf
 Sets Postgres environment variables to a config type
 
+Environment variables will override defaults set on `PostgresConfig`, making it simple for creating a local default config.
 ### Example
 ```go
 os.Setenv("PGHOST", "www.google.com")
@@ -16,7 +17,7 @@ type Config struct {
 
 cfg := Config{
     PostgresConfig: &PostgresConfig{
-      // Add defaults here if requires...
+      // Add defaults here if requires... (env vars will override defaults)
     },
 }
 
