@@ -23,6 +23,5 @@ cfg := Config{
 pg_conf.Update(cfg.PostgresConfig)
 
 connStr := cfg.PostgresConfig.GetPostgresConnStr()
-
-expected := "host=www.google.com user=John dbname=happy_db password=wizard port=1234 sslmode=verify-ca"
+// result - "host=www.google.com user=John dbname=happy_db password=wizard port=1234 sslmode=verify-ca"
 ```
